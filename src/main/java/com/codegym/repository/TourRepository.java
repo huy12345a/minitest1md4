@@ -1,11 +1,14 @@
 package com.codegym.repository;
 
+import com.codegym.model.Province;
 import com.codegym.model.Tour;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
-
 public interface TourRepository extends JpaRepository<Tour, Long> {
-    List<Tour> findByDestinationContaining(String destination);
+    Iterable<Tour> findAllByProvince(Province province);
+
+    Page<Tour> findAll(Pageable pageable);
 }
 

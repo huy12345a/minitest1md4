@@ -1,43 +1,42 @@
 package com.codegym.service;
 
-
-import com.codegym.excaption.ResourceNotFoundException;
 import com.codegym.model.Tour;
 import com.codegym.repository.TourRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Optional;
 
 @Service
-public class TourService {
+public class TourService implements ITourService {
     @Autowired
     private TourRepository tourRepository;
 
-    public Tour createTour(Tour tour) {
-        return tourRepository.save(tour);
+    @Override
+    public Iterable<Tour> getTours() {
+        return tourRepository.findAll();
     }
 
-    public Tour getTour(Long id) {
-        return tourRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Tour not found", message));
+    @Override
+    public Optional<Tour> getTour(Long id) {
+        return tourRepository.findById(id);
     }
 
-    public Tour updateTour(Long id, Tour tourDetails) {
-        Tour tour = getTour(id);
-        tour.setCode(tourDetails.getCode());
-        tour.setDestination(tourDetails.getDestination());
-        tour.setStart(tourDetails.getStart());
-        tour.setImg(tourDetails.getImg());
-        return tourRepository.save(tour);
+    @Override
+    public void save(Tour tour) {
+        tourRepository.save(tour);
     }
 
+    @Override
     public void deleteTour(Long id) {
         tourRepository.deleteById(id);
     }
 
-    public List<Tour> getAllTours() {
-        return tourRepository.findAll();
+    @Override
+    public Page<Tour> getTours(Pageable pageable) {
+        return tourRepository.findAll(pageable);
     }
 }
 
