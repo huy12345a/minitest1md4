@@ -5,7 +5,7 @@
 </head>
 <body>
 <h1 th:text="${province.id == null} ? 'Add New Province' : 'Edit Province'"></h1>
-<form th:action="@{${province.id == null} ? '/api/provinces' : '/api/provinces/' + ${province.id}}" method="post" th:object="${province}">
+<form th:action method="post" th:object="${province}">
     <input type="text" th:field="*{name}" placeholder="Province Name" required />
     <button type="submit">Save</button>
 </form>
