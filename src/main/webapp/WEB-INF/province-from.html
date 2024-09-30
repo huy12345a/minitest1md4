@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Province</title>
+</head>
+<body>
+<h1 th:text="${province.id == null} ? 'Add New Province' : 'Edit Province'"></h1>
+<form th:action="@{${province.id == null} ? '/api/provinces' : '/api/provinces/' + ${province.id}}" method="post" th:object="${province}">
+    <input type="text" th:field="*{name}" placeholder="Province Name" required />
+    <button type="submit">Save</button>
+</form>
+<a href="/api/provinces/view">Back to Provinces</a>
+</body>
+</html>

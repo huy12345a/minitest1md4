@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Provinces</title>
+</head>
+<body>
+<h1>List of Provinces</h1>
+<a href="/api/provinces/form">Add New Province</a>
+<ul>
+    <li th:each="province : ${provinces}">
+        <span th:text="${province.name}"></span>
+        <a th:href="@{/api/provinces/form(id=${province.id})}">Edit</a>
+        <a th:href="@{/api/provinces/${province.id}(method='DELETE')}">Delete</a>
+    </li>
+</ul>
+</body>
+</html>

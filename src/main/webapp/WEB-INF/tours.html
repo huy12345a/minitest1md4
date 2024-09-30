@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Tours</title>
+</head>
+<body>
+<h1>List of Tours</h1>
+<a href="/api/tours/form">Add New Tour</a>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Code</th>
+        <th>Destination</th>
+        <th>Start Date</th>
+        <th>Image</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="tour : ${tours}">
+        <td th:text="${tour.id}"></td>
+        <td th:text="${tour.code}"></td>
+        <td th:text="${tour.destination}"></td>
+        <td th:text="${tour.start}"></td>
+        <td th:text="${tour.img}"></td>
+        <td>
+            <a th:href="@{/api/tours/form(id=${tour.id})}">Edit</a>
+            <a th:href="@{/api/tours/${tour.id}(method='DELETE')}">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

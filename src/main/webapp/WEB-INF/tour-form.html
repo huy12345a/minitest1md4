@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Tour</title>
+</head>
+<body>
+<h1 th:text="${tour.id == null} ? 'Add New Tour' : 'Edit Tour'"></h1>
+<form th:action method="post" th:object="${tour}">
+    <input placeholder="Code" required th:field="*{code}" type="text"/>
+    <input type="text" th:field="*{destination}" placeholder="Destination" required />
+    <input type="date" th:field="*{start}" placeholder="Start Date" required />
+    <input type="text" th:field="*{img}" placeholder="Image URL" required />
+    <button type="submit">Save</button>
+</form>
+<a href="/api/tours/view">Back to Tours</a>
+</body>
+</html>
