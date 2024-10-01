@@ -1,10 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remove Customer</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-
+<div class="container mt-5">
+    <h3>Remove Customer</h3>
+    <p>
+        <a th:href="@{/tours}" class="btn btn-secondary">
+            Back to customer list
+        </a>
+    </p>
+    <div id="form">
+        <form th:action="@{/tours/delete}" th:object="${tour}" method="POST" novalidate="novalidate">
+            <input type="hidden" th:field="*{id}"/>
+            <div class="form-group">
+                <label for="code">Code</label>
+                <input type="text" id="code" th:field="*{code}" class="form-control" readonly/>
+            </div>
+            <div class="form-group">
+                <label for="destination">Destination</label>
+                <input type="text" id="destination" th:field="*{destination}" class="form-control" readonly/>
+            </div>
+            <div class="form-group">
+                <label for="start">Start</label>
+                <input type="text" id="start" th:field="*{start}" class="form-control" readonly/>
+            </div>
+            <div class="form-group">
+                <label for="img">Img</label>
+                <input type="text" id="img" th:field="*{img}" class="form-control" readonly/>
+            </div>
+            <button type="submit" class="btn btn-danger">Remove</button>
+        </form>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
